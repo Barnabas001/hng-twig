@@ -1,0 +1,44 @@
+{% extends "base.twig" %}
+
+{% block content %}
+<section class="ticket-page-section">
+  <h2>Tickets</h2>
+
+  <form method="POST" class="form">
+    <label class="label">Title
+      <input name="title" class="input" required>
+    </label>
+    <label class="label">Description
+      <textarea name="description" class="input" required></textarea>
+    </label>
+    <button type="submit" name="add" class="button">Add Ticket</button>
+  </form>
+
+  <div class="ticket-page-table-container">
+    <table class="ticket-page-table">
+      <thead>
+        <tr>
+          <th>ID</th><th>Title</th><th>Status</th><th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if tickets is empty %}
+          <tr><td colspan="4">No tickets available</td></tr>
+        {% endif %}
+        {% for t in tickets %}
+          <tr>
+            <td>{{ t.id }}</td>
+            <td>{{ t.title }}</td>
+            <td>{{ t.status }}</td>
+            <td>
+              <form method="POST" style="display:inline">
+                <button name="delete" value="{{ t.id }}" class="button">Delete</button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}

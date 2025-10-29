@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ title|default('Ticket Management') }}</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="logo">Ticketly</div>
+    <nav>
+      <a href="?page=landing">Home</a>
+      {% if session.logged_in %}
+        <a href="?page=dashboard">Dashboard</a>
+        <a href="?page=tickets">Tickets</a>
+        <a href="?page=logout">Logout</a>
+      {% else %}
+        <a href="?page=login">Login</a>
+      {% endif %}
+    </nav>
+  </header>
+
+  <main class="sub-main">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">
+    <small>Ticket Management System — Twig Version</small>
+  </footer>
+</body>
+</html>
